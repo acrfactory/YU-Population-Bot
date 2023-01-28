@@ -1,16 +1,19 @@
 print("hi")
 import discord
-print("hi")
+import botfunctions
+
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-TOKEN = ""
+TOKEN = "MTA2ODkxOTg2ODQyMzkzODA1OA.Gx_qoK.zxNBIFAr5M8MyfcRAPGkPVxkNQVxNqJ5ZfGfoc"
 
 @client.event
 async def on_ready():
     print(f"{client.user} is now running")
 
+
+# 
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -20,5 +23,14 @@ async def on_message(message):
     channel = str(message.channel)
     if user_message.startswith("!"):
         await message.channel.send("h232223142i")
+
+    # Help command
+    if user_message.startswith("!"):
+        # Make the appropriate help 
+        await botfunctions.help_func(message, user_message[1:])
+
+    # Query command
+    if user_message.startswith("?"):
+        await botfunctions.query_func(message, user_message[1:])
 
 client.run(TOKEN)
