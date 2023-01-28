@@ -11,8 +11,3 @@ async def query_func(message, user_message):
 # TODO Output proper help information (depending on what user_message is)
 async def help_func(message, user_message):
     await message.channel.send("hi")
-
-    
-
-# df_gdp = pd.read_csv('gdp.csv')
-# df_gdp

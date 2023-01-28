@@ -6,7 +6,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-TOKEN = ""
+TOKEN = "MTA2ODkxOTg2ODQyMzkzODA1OA.GU7CNu.4mwY7QF8Ga5CNVYSu0pRsKgGdfRyTn8xhpjyfc"
 
 @client.event
 async def on_ready():
@@ -21,6 +21,7 @@ async def on_message(message):
     username = str(message.author)
     user_message = str(message.content)
     channel = str(message.channel)
+
     # Help command
     if user_message.startswith("!"):
         # Make the appropriate help 
