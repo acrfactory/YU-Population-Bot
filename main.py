@@ -21,11 +21,6 @@ async def on_message(message):
     user_message = str(message.content)
     channel = str(message.channel)
 
-    # Help command
-    if user_message.startswith("!"):
-        # Sends appropriate help message
-        await botfunctions.help_func(message, user_message[1:])
-
     # Query command
     if user_message.startswith("?"):
         # Returns queried data
