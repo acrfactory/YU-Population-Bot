@@ -19,6 +19,7 @@ async def on_message(message):
         return
         
     user_message = str(message.content)
+    channel = str(message.channel)
 
     # Help command
     if user_message.startswith("!"):
@@ -30,5 +31,4 @@ async def on_message(message):
         # Returns queried data
         await botfunctions.query_func(message, user_message[1:])
 
-
-client.run()
+client.run(TOKEN)
