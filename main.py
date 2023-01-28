@@ -5,7 +5,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-TOKEN = ""
+TOKEN = "MTA2ODkxOTg2ODQyMzkzODA1OA.Gx_qoK.zxNBIFAr5M8MyfcRAPGkPVxkNQVxNqJ5ZfGfoc"
 
 @client.event
 async def on_ready():
@@ -31,4 +31,4 @@ async def on_message(message):
         await botfunctions.query_func(message, user_message[1:])
 
 
-client.run(TOKEN)
+client.run()
