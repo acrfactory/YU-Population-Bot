@@ -1,6 +1,7 @@
 print("hi")
 import discord
 import botfunctions
+import os
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -13,22 +14,24 @@ async def on_ready():
     print(f"{client.user} is now running")
 
 
-# 
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
-    username = str(message.author)
+    date = str(message.created_at)     
     user_message = str(message.content)
     channel = str(message.channel)
 
     # Help command
     if user_message.startswith("!"):
-        # Make the appropriate help 
+        # Sends appropriate help message
         await botfunctions.help_func(message, user_message[1:])
 
     # Query command
     if user_message.startswith("?"):
+        # Returns queried data
         await botfunctions.query_func(message, user_message[1:])
 
+    if user_message == "date":
+        await botfunctions.number(message, user_message)
 client.run(TOKEN)
