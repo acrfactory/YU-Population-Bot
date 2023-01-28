@@ -7,6 +7,7 @@ date = dt.strftime('%A')[0]
 COMMANDS = {
     "countClasses": "Given a building code & time, see the number of classes open",
     "listCodes": "List all building codes",
+    "contains": "Check if a building at a giving contains classes",
     "help": "List all commands"
 }
 BUILDING_CODES = {
@@ -30,21 +31,27 @@ async def query_func(message, user_message):
     elif fields[0] == "countClasses":
         await message.channel.send(sheet)
 
-    elif fields[0] == "open":
+
+    # ?contains <building code> <time>
+    elif fields[0] == "contains":
         if len(fields) == 1 or fields[1] not in BUILDING_CODES:
             await message.channel.send("Improper building code")
             return
         if len(fields) == 2 or fields[2] not in TIMES:
             await message.channel.send("Improper time")
             return
-        await message.channel.send(f"{BUILDING_CODES[fields[1]]} contains classes during {fields[2][:2]}:{fields[2][2:]}")
+        # TODO check
+        if len(sheet.loc[ (sheet[fields[2]] == 1.0) & (sheet["Location"] == fields[1]) ]) != 0:
+            await message.channel.send(f"{BUILDING_CODES[fields[1]]} contains classes during {fields[2][:2]}:{fields[2][2:]}")
+        else:
+            await message.channel.send(f"{BUILDING_CODES[fields[1]]} does not contain classes during {fields[2][:2]}:{fields[2][2:]}")
 
+    # ?listCodes
     elif fields[0] == "listCodes":
         for code, building in COMMANDS.items():
             await message.channel.send(f"{code}: {building}")
 
+    # ?help
     elif fields[0] == "help":
         for command, desc in COMMANDS.items():
             await message.channel.send(f"{command}: {desc}")
-
-    
