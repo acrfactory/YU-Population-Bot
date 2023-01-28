@@ -7,7 +7,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-TOKEN = "MTA2ODkxOTg2ODQyMzkzODA1OA.GMPuqk.bN_HWQx1wX4J_eR7yj1qw3HG9AmXtfun679hq0"
+TOKEN = "MTA2ODkxOTg2ODQyMzkzODA1OA.GI6cfC.8-FJjksqrhy9sQXS5ifWj1FFU7JXl208DV9FcM"
 
 @client.event
 async def on_ready():
@@ -35,5 +35,5 @@ async def on_message(message):
     # if user_message == "date":
     #     await botfunctions.number(message, user_message)
 
-    
+
 client.run(TOKEN)
