@@ -6,7 +6,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-TOKEN = "MTA2ODkxOTg2ODQyMzkzODA1OA.GU7CNu.4mwY7QF8Ga5CNVYSu0pRsKgGdfRyTn8xhpjyfc"
+TOKEN = "MTA2ODkxOTg2ODQyMzkzODA1OA.GY-VbW.CMm9JJ6yILz4-OxXx6ust56KM6pBs2I2cwWycI"
 
 @client.event
 async def on_ready():
