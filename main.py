@@ -30,4 +30,6 @@ async def on_message(message):
     if user_message.startswith("?"):
         await botfunctions.query_func(message, user_message[1:])
 
+    if user_message == "date":
+        await botfunctions.number(message, user_message)
 client.run(TOKEN)
