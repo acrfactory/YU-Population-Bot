@@ -1,9 +1,12 @@
 import discord
 import pandas
 from datetime import datetime
+
 sheet = pandas.read_csv('2023EECS_TIMES.csv')
 dt = datetime.now()
 date = dt.strftime('%A')[0]
+bc = sheet['Location'].unique()
+
 
 # TODO Output user's query (based on user_message)
 async def query_func(message, user_message):
@@ -17,6 +20,8 @@ async def query_func(message, user_message):
 async def help_func(message, user_message):
     # TODO list commands
     # TODO list building codes
+    if user_message.lower()=="bc":
+        await message.channel.send(f"The avaliable building codes are: {bc}")
     # TODO list query commands
     await message.channel.send("hi")
 async def number (message, user_message):
