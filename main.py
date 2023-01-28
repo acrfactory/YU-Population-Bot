@@ -17,17 +17,17 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    username = str(message.author)
+        
     user_message = str(message.content)
-    channel = str(message.channel)
 
     # Help command
     if user_message.startswith("!"):
-        # Make the appropriate help 
+        # Sends appropriate help message
         await botfunctions.help_func(message, user_message[1:])
 
     # Query command
     if user_message.startswith("?"):
+        # Returns queried data
         await botfunctions.query_func(message, user_message[1:])
 
 
