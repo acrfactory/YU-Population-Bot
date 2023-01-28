@@ -18,5 +18,3 @@ async def help_func(message, user_message):
     # TODO list building codes
     # TODO list query commands
     await message.channel.send("hi")
-
-print(sheet["1900"])
