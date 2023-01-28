@@ -17,7 +17,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-        
+    date = str(message.created_at)     
     user_message = str(message.content)
     channel = str(message.channel)
 
