@@ -94,14 +94,15 @@ def roundToHour(time):
     hour = int(time[0:2])
     mins = int(time[2:4])
     newMins = "00"
+    
     if (mins >= 45 and mins < 60):
         newMins = "00"
         return f"{hour+1}{newMins}"
-    elif (mins >= 0 and mins < 15):
-        newMins == "00"
-    elif (mins >= 15 and mins < 30):
-        newMins == "30"
     elif (mins >= 30 and mins < 45):
         newMins == "30"
+    elif (mins >= 15 and mins < 30):
+        newMins == "30"
+    elif (mins >= 0 and mins < 15):
+        newMins == "00"
 
     return f"{time[0:2]}{newMins}"
