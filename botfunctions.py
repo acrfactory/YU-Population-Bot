@@ -32,7 +32,7 @@ async def query_func(message, user_message):
 
     if len(fields) == 0 or fields[0] not in COMMANDS:
         # Invalid command
-        await message.channel.send("Improper command, use the '!list' command to see query commands")
+        await message.channel.send("Improper command, use the '?help' command to see query commands")
     # building = fields[1]
     # if the command asks for the number of classes on a certain day
     if fields[0] == ("countClassesToday"):
