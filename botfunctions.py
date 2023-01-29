@@ -3,6 +3,8 @@ import pandas
 from datetime import datetime
 sheet = pandas.read_csv('2023EECS_TIMES.csv')
 dt = datetime.now()
+bold = "\33{1m"
+
 weekday = dt.strftime('%A')[0]
 if weekday == "T":
     if dt.strftime("%A")[1] == "u":
@@ -11,8 +13,8 @@ if weekday == "T":
         weekday = "M"
 # TODO Output user's query (based on user_message)
 COMMANDS = {
-    "countClasses": "Given a building code & time, see the number of classes open",
-    "countClassesToday": "See the numnber of classes opened today",
+    "countClasses": "Given a building code & time, see the number of classes open on a certain day [(buildingCode) (time) (weekday)]",
+    "countClassesToday": "See the numnber of classes opened today [(buildingCode)]",
     "listCodes": "List all building codes",
     "help": "List all commands"
 }
@@ -39,7 +41,6 @@ async def query_func(message, user_message):
         timeOld = dt.strftime("%H%M")
         time = str(roundToHour(timeOld))
 
-    
         w = sheet.loc[(sheet["Location"] == f"{building}") & (
             sheet[f"{time}"] == 1.0) & (sheet["Day"] == f"{weekday}")]
         numPeople = len(w)
@@ -77,29 +78,30 @@ async def query_func(message, user_message):
             await message.channel.send(f"{command}: {desc}")
 # TODO Output proper help information (depending on what user_message is)
 
+
 async def help_func(message, user_message):
     fields = user_message.split(" ")
-    
-    
+
     if (fields[0] == "help"):
-        s="ALL COMMANDS\n==============\n"
-        for key , value in COMMANDS.items():
+        s = "ALL COMMANDS\n==============\n"
+        for key, value in COMMANDS.items():
             s += f"{key}: {value}\n"
 
     await message.channel.send(s)
+
 
 def roundToHour(time):
     hour = int(time[0:2])
     mins = int(time[2:4])
     newMins = "00"
-    if (mins >=45 and mins <60) :
+    if (mins >= 45 and mins < 60):
         newMins = "00"
         return f"{hour+1}{newMins}"
-    elif(mins >= 0 and mins <15):
+    elif (mins >= 0 and mins < 15):
         newMins == "00"
-    elif (mins >=15 and mins < 30):
+    elif (mins >= 15 and mins < 30):
         newMins == "30"
-    elif (mins >=30 and mins < 45):
+    elif (mins >= 30 and mins < 45):
         newMins == "30"
-        
+
     return f"{time[0:2]}{newMins}"
